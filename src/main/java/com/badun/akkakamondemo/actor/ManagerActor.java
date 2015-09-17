@@ -32,7 +32,6 @@ public class ManagerActor extends AbstractActor {
     }
 
     private void handleWorkerMessage(Msg.WorkDone message) {
-        Sleeper.sleep(1);
         sender().tell(buildWorkMessage(), self());
         log.info("[MANAGER] Manager send a peace of work to worker by worker request.");
     }

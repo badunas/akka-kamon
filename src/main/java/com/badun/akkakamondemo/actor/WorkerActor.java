@@ -8,6 +8,8 @@ import akka.japi.pf.ReceiveBuilder;
 import com.badun.akkakamondemo.message.Msg;
 import com.badun.akkakamondemo.util.Sleeper;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * Created by Artsiom Badun.
  */
@@ -23,7 +25,7 @@ public class WorkerActor extends AbstractActor {
     }
 
     private void handleWorkMessage(Msg.PieceOfWork message) {
-        Sleeper.sleep(1);
+        Sleeper.sleep(5);
         log.info("[WORKER] Actor " + this + " handled message: " + message);
         sender().tell(new Msg.WorkDone(), self());
     }
