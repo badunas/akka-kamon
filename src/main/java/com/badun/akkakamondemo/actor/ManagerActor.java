@@ -5,6 +5,7 @@ import akka.event.Logging;
 import akka.event.LoggingAdapter;
 import akka.japi.pf.ReceiveBuilder;
 import com.badun.akkakamondemo.message.Msg;
+import com.badun.akkakamondemo.util.Sleeper;
 import scala.concurrent.duration.Duration;
 
 import java.util.concurrent.TimeUnit;
@@ -31,6 +32,7 @@ public class ManagerActor extends AbstractActor {
     }
 
     private void handleWorkerMessage(Msg.WorkDone message) {
+        Sleeper.sleep(1);
         sender().tell(buildWorkMessage(), self());
         log.info("[MANAGER] Manager send a peace of work to worker by worker request.");
     }

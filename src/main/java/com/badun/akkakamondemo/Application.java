@@ -7,6 +7,7 @@ import com.badun.akkakamondemo.actor.ManagerActor;
 import com.badun.akkakamondemo.actor.WorkerActor;
 import com.badun.akkakamondemo.message.Msg;
 import com.typesafe.config.ConfigFactory;
+import kamon.Kamon;
 
 /**
  * Created by Artsiom Badun.
@@ -14,6 +15,8 @@ import com.typesafe.config.ConfigFactory;
 public class Application {
 
     public static void main(String[] args) {
+        Kamon.start();
+
         ActorSystem system = ActorSystem.create("ActorSystem", ConfigFactory.load());
 
         ActorRef worker1 = system.actorOf(Props.create(WorkerActor.class).withDispatcher("workerDispatcher"), "worker1");
